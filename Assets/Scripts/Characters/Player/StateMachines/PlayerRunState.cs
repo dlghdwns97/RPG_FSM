@@ -15,7 +15,7 @@ public class PlayerRunState : PlayerGroundedState
     }
     public override void Exit()
     {
-        base.Enter();
+        base.Exit();
         StopAnimation(stateMachine.Player.AnimationData.RunParameterHash);
     }
 }
