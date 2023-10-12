@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class Goal : MonoBehaviour
 {
-    public GameObject clear;
-    private void Awake()
-    {
-        clear = GetComponent<GameObject>();
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            clear.SetActive(true);
+            GameObject.Find("ClearWindow").transform.Find("Clear").gameObject.SetActive(true);
+            other.transform.position = new Vector3(0, 0, 0);    // ??
+            StartCoroutine(Wait());
         }
+    }
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(3.0f);
+        GameObject.Find("ClearWindow").transform.Find("Clear").gameObject.SetActive(false);
     }
 }
